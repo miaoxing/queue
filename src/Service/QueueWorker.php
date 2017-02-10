@@ -256,10 +256,10 @@ class QueueWorker extends BaseService
         $this->logger->alert('Queue job failed', $job->getPayload());
 
         if ($this->logFailedJobsToDb) {
-            $this->db->insert('failedJobs', [
+            $this->db->insert('queue_failed_jobs', [
                 'queue' => $job->queue->getName(),
                 'payload' => json_encode($job->getPayload(), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-                'createTime' => date('Y-m-d H:i:s', $this->getTime()),
+                'created_at' => date('Y-m-d H:i:s', $this->getTime()),
             ]);
         }
 

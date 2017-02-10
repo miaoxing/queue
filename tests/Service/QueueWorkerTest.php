@@ -120,10 +120,10 @@ class QueueWorkerTest extends \Miaoxing\Plugin\Test\BaseTestCase
 
         $db->expects($this->once())
             ->method('insert')
-            ->with('failedJobs', [
+            ->with('queue_failed_jobs', [
                 'queue' => 'default',
                 'payload' => '"body"',
-                'createTime' => date('Y-m-d H:i:s', $time),
+                'created_at' => date('Y-m-d H:i:s', $time),
             ]);
 
         $worker->process($job, 3, 0);
