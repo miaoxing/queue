@@ -3,7 +3,6 @@
 namespace Miaoxing\Queue\Service;
 
 use DateTime;
-use Miaoxing\Queue\Service\BaseJob;
 
 /**
  * 基于Laravel Queue简化的队列服务
@@ -23,7 +22,7 @@ abstract class BaseQueue extends \miaoxing\plugin\BaseService
     /**
      * @var string
      */
-    protected $jobClass = '\services\BaseJob';
+    protected $jobClass = '\Miaoxing\Queue\Service\BaseJob';
 
     /**
      * Push a new job onto the queue.
@@ -121,9 +120,10 @@ abstract class BaseQueue extends \miaoxing\plugin\BaseService
      * Create a job instance.
      *
      * @param string $payload
+     * @param string|null $id
      * @return BaseJob
      */
-    protected function createJob($payload, $id)
+    protected function createJob($payload, $id = null)
     {
         return new $this->jobClass([
             'wei' => $this->wei,
@@ -209,7 +209,7 @@ abstract class BaseQueue extends \miaoxing\plugin\BaseService
      * Delete the job from the queue.
      *
      * @param array $payload
-     * @param int $id
+     * @param int|null $id
      */
-    abstract public function delete($payload, $id);
+    abstract public function delete($payload, $id = null);
 }

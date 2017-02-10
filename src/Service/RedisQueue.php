@@ -76,7 +76,7 @@ class RedisQueue extends BaseQueue
     /**
      * {@inheritdoc}
      */
-    public function delete($payload, $id)
+    public function delete($payload, $id = null)
     {
         $this->redis()->zrem($this->getQueue() . ':reserved', $payload);
     }

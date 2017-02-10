@@ -47,7 +47,7 @@ class SyncQueue extends BaseQueue
     /**
      * {@inheritdoc}
      */
-    public function delete($payload)
+    public function delete($payload, $id = null)
     {
     }
 

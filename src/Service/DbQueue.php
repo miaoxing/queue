@@ -82,7 +82,7 @@ class DbQueue extends BaseQueue
     /**
      * {@inheritdoc}
      */
-    public function delete($payload, $id)
+    public function delete($payload, $id = null)
     {
         $this->db->delete($this->table, ['id' => $id]);
     }
