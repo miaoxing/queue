@@ -1,24 +1,9 @@
 <?php
 
-namespace Miaoxing\Queue\Controller;
-
-use Miaoxing\App\Job\SendEmail;
+namespace Miaoxing\Queue\Controller\Cli;
 
 class Queues extends \miaoxing\plugin\BaseController
 {
-    protected $guestPages = [
-        'queues'
-    ];
-
-    public function testAction($req)
-    {
-        $id = wei()->queue->push(SendEmail::className(), [
-            'to' => 'to@example.com',
-            'content' => 'hello'
-        ]);
-        return $id;
-    }
-
     public function workAction($req)
     {
         wei()->queueWorker->work();
