@@ -6,20 +6,25 @@ class Queues extends \miaoxing\plugin\BaseController
 {
     public function workAction($req)
     {
-        wei()->queueWorker->work();
+        wei()->queueWorker->work([
+            'queueName' => $req['queue-name']
+        ]);
+
         return $this->suc();
     }
 
     public function daemonAction($req)
     {
         wei()->queueWorker->work([
-            'daemon' => true
+            'daemon' => true,
+            'queueName' => $req['queue-name']
         ]);
     }
 
-    public function restartAction($req)
+    public function restartAction()
     {
         wei()->queueWorker->restart();
+
         return $this->suc();
     }
 }

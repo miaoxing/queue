@@ -71,11 +71,12 @@ abstract class BaseQueue extends \miaoxing\plugin\BaseService
      *
      * @param string $job
      * @param array $data
+     * @param string $queue
      */
-    public function pushMulti($job, $data = [])
+    public function pushMulti($job, $data = [], $queue = null)
     {
         foreach ($data as $row) {
-            $this->push($job, $row);
+            $this->push($job, $row, $queue);
         }
     }
 
