@@ -83,7 +83,7 @@ class QueueWorker extends BaseService
             return $this->daemon($this->queueName, $this->delay, $this->memory, $this->sleep, $this->tries);
         }
 
-        return $this->pop($this->delay, $this->sleep, $this->tries);
+        return $this->pop($this->queueName, $this->delay, $this->sleep, $this->tries);
     }
 
     /**

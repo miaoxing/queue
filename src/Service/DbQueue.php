@@ -27,6 +27,13 @@ class DbQueue extends BaseQueue
     protected $default = 'queue';
 
     /**
+     * The expiration time of a job.
+     *
+     * @var int|null
+     */
+    protected $expire = 60;
+
+    /**
      * {@inheritdoc}
      */
     public function push($job, $data = '', $queue = null)
@@ -41,10 +48,16 @@ class DbQueue extends BaseQueue
      */
     public function pushRaw($payload, $queue = null, array $options = [])
     {
+        $availableAt = time();
+        if (isset($options['delay'])) {
+            $availableAt += $options['delay'];
+        }
+
         $this->db->insert($this->table, [
             'queue' => $this->getQueue($queue),
             'payload' => $payload,
-            'created_at' => date('Y-m-d H:i:s')
+            'created_at' => date('Y-m-d H:i:s'),
+            'available_at' => date('Y-m-d H:i:s', $availableAt),
         ]);
 
         return $this->db->lastInsertId();
@@ -55,7 +68,9 @@ class DbQueue extends BaseQueue
      */
     public function later($delay, $job, $data = '', $queue = null)
     {
-        // TODO: Implement later() method.
+        $payload = json_encode($this->createPayload($job, $data), JSON_UNESCAPED_SLASHES);
+
+        return $this->pushRaw($payload, $queue, ['delay' => $delay]);
     }
 
     /**
@@ -107,16 +122,18 @@ class DbQueue extends BaseQueue
     protected function getNextAvailableJob($queue)
     {
         $job = $this->db($this->table)
-            ->where([
-                'queue' => $this->getQueue($queue),
-                'reserved_at' => '0000-00-00 00:00:00'
-            ])
-            ->andWhere('available_at <= ?', date('Y-m-d H:i:s'))
+            ->where(['queue' => $this->getQueue($queue)])
+            ->andWhere(
+                // available or reserved but expired
+                "(reserved_at = '0000-00-00 00:00:00' AND available_at <= ?) OR (reserved_at <= ?)",
+                [date('Y-m-d H:i:s'), date('Y-m-d H:i:s', time() - $this->expire)]
+            )
             ->asc('id')
-            ->find();
+            ->fetch();
 
         if ($job) {
             $job['payload'] = json_decode($job['payload'], true);
+            $job['payload']['attempts'] = $job['attempts'];
         }
 
         return $job;
@@ -136,7 +153,7 @@ class DbQueue extends BaseQueue
         $this->db($this->table)
             ->where(['id' => $job['id']])
             ->update([
-                'reserved_at' => $job['reserved_at'],
+                'reserved_at' => date('Y-m-d H:i:s', $job['reserved_at']),
                 'attempts' => $job['attempts'],
             ]);
 
