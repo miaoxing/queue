@@ -129,6 +129,7 @@ class DbQueue extends BaseQueue
                 [date('Y-m-d H:i:s'), date('Y-m-d H:i:s', time() - $this->expire)]
             )
             ->asc('id')
+            ->forUpdate()
             ->fetch();
 
         if ($job) {
