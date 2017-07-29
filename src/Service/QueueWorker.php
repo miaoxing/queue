@@ -257,7 +257,7 @@ class QueueWorker extends BaseService
 
         if ($this->logFailedJobsToDb) {
             $this->db->insert('queue_failed_jobs', [
-                'queue' => $job->queue->getName(),
+                'queue' => $job->getQueueName(),
                 'payload' => json_encode($job->getPayload(), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
                 'created_at' => date('Y-m-d H:i:s', $this->getTime()),
             ]);

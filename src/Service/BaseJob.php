@@ -178,4 +178,14 @@ class BaseJob extends \miaoxing\plugin\BaseService
     {
         return $this->payload['job'];
     }
+
+    /**
+     * Get the name of current queue
+     *
+     * @return string
+     */
+    public function getQueueName()
+    {
+        return $this->queueName;
+    }
 }

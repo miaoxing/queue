@@ -88,7 +88,7 @@ class DbQueue extends BaseQueue
 
             $pdo->commit();
 
-            return $this->createJob($job['payload'], $job['id']);
+            return $this->createJob($job['payload'], $job['id'], $queue);
         }
 
         $pdo->commit();

@@ -122,14 +122,16 @@ abstract class BaseQueue extends \miaoxing\plugin\BaseService
      *
      * @param string $payload
      * @param string|null $id
+     * @param string|null $queue
      * @return BaseJob
      */
-    protected function createJob($payload, $id = null)
+    protected function createJob($payload, $id = null, $queue = null)
     {
         return new $this->jobClass([
             'wei' => $this->wei,
             'id' => $id,
             'queue' => $this,
+            'queueName' => $queue,
             'payload' => $payload,
         ]);
     }
