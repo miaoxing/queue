@@ -297,7 +297,7 @@ class QueueWorker extends BaseService
 
         foreach ($jobs as $job) {
             $payload = json_decode($job['payload'], true);
-            $this->queue->push($payload['job'], $payload['data']);
+            $this->queue->push($payload['job'], $payload['data'], $job['queue']);
             $this->forget($job['id']);
         }
 
