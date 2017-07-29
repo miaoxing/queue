@@ -282,6 +282,40 @@ class QueueWorker extends BaseService
     }
 
     /**
+     * Retry failed job.
+     *
+     * @param mixed $id
+     * @return array
+     */
+    public function retry($id)
+    {
+        $condition = $id === 'all' ? false : ['id' => $id];
+        $jobs = wei()->db->selectAll('queue_failed_jobs', $condition);
+        if (!$jobs) {
+            return ['code' => -1, 'message' => 'Job not found'];
+        }
+
+        foreach ($jobs as $job) {
+            $payload = json_decode($job['payload'], true);
+            $this->queue->push($payload['job'], $payload['data']);
+            $this->forget($job['id']);
+        }
+
+        return ['code' => 1, 'message' => 'Operation successful'];
+    }
+
+    /**
+     * Delete a failed job from database.
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function forget($id)
+    {
+        return (bool) $this->db->delete('queue_failed_jobs', ['id' => $id]);
+    }
+
+    /**
      * Determine if the memory limit has been exceeded.
      *
      * @param  int $memoryLimit

@@ -27,4 +27,9 @@ class Queues extends \miaoxing\plugin\BaseController
 
         return $this->suc();
     }
+
+    public function retryAction($req)
+    {
+        return wei()->queueWorker->retry($req['id']);
+    }
 }
