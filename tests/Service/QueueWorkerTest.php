@@ -18,7 +18,7 @@ class QueueWorkerTest extends \Miaoxing\Plugin\Test\BaseTestCase
             'queue' => $queue,
         ]]);
 
-        $job = $this->getMock(BaseJob::className());
+        $job = $this->getMock(BaseJob::class);
 
         $queue->expects($this->once())
             ->method('pop')
@@ -40,7 +40,7 @@ class QueueWorkerTest extends \Miaoxing\Plugin\Test\BaseTestCase
             'queue' => $queue,
         ]]);
 
-        $job = $this->getMock(BaseJob::className());
+        $job = $this->getMock(BaseJob::class);
 
         $queue->expects($this->at(0))
             ->method('pop')
@@ -99,7 +99,7 @@ class QueueWorkerTest extends \Miaoxing\Plugin\Test\BaseTestCase
             ->method('getTime')
             ->willReturn($time);
 
-        $job = $this->getMock(BaseJob::className(), ['attempts', 'getPayload', 'delete', 'failed'], [[
+        $job = $this->getMock(BaseJob::class, ['attempts', 'getPayload', 'delete', 'failed'], [[
             'wei' => $this->wei,
             'queue' => $queue,
         ]]);
@@ -134,7 +134,7 @@ class QueueWorkerTest extends \Miaoxing\Plugin\Test\BaseTestCase
      */
     public function testJobIsReleasedWhenExceptionIsThrown()
     {
-        $job = $this->getMock(BaseJob::className());
+        $job = $this->getMock(BaseJob::class);
 
         $job->expects($this->once())
             ->method('fire')
@@ -158,7 +158,7 @@ class QueueWorkerTest extends \Miaoxing\Plugin\Test\BaseTestCase
      */
     public function testJobIsNotReleasedWhenExceptionIsThrownButJobIsDeleted()
     {
-        $job = $this->getMock(BaseJob::className());
+        $job = $this->getMock(BaseJob::class);
 
         $job->expects($this->once())
             ->method('fire')

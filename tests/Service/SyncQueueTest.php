@@ -20,7 +20,7 @@ class SyncQueueTest extends \Miaoxing\Plugin\Test\BaseTestCase
             ->with('queueFailed');
 
         try {
-            $sync->push(FailingSyncQueueTestHandler::className(), ['foo' => 'bar']);
+            $sync->push(FailingSyncQueueTestHandler::class, ['foo' => 'bar']);
         } catch (\Exception $e) {
             $this->assertTrue($_SERVER['__sync.failed']);
         }
