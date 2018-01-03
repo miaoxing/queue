@@ -3,7 +3,7 @@
 namespace Miaoxing\Queue\Service;
 
 use Miaoxing\Queue\Service\BaseQueue;
-use services\Db;
+use Miaoxing\Plugin\Service\Db;
 use Wei\Schema;
 
 /**
