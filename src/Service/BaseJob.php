@@ -7,7 +7,7 @@ use DateTime;
 /**
  * @property BaseQueue $queue
  */
-class BaseJob extends \miaoxing\plugin\BaseService
+class BaseJob extends \Miaoxing\Plugin\BaseService
 {
     /**
      * @var array

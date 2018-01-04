@@ -10,7 +10,7 @@ use DateTime;
  * @property \Wei\Event $event
  * @link https://github.com/laravel/framework/tree/5.1/src/Illuminate/Queue
  */
-abstract class BaseQueue extends \miaoxing\plugin\BaseService
+abstract class BaseQueue extends \Miaoxing\Plugin\BaseService
 {
     /**
      * The name of the default queue.

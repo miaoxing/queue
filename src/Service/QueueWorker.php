@@ -3,7 +3,7 @@
 namespace Miaoxing\Queue\Service;
 
 use Exception;
-use miaoxing\plugin\BaseService;
+use Miaoxing\Plugin\BaseService;
 use Miaoxing\Queue\Service\BaseQueue;
 use Miaoxing\Queue\Service\BaseJob;
 
