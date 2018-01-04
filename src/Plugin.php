@@ -4,7 +4,7 @@ namespace Miaoxing\Queue;
 
 use Miaoxing\App\Job\SendEmail;
 
-class Plugin extends \miaoxing\plugin\BasePlugin
+class Plugin extends \Miaoxing\Plugin\BasePlugin
 {
     protected $name = '队列';
 
