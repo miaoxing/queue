@@ -2,7 +2,7 @@
 
 namespace Miaoxing\Queue\Controller\Cli;
 
-class Queues extends \miaoxing\plugin\BaseController
+class Queues extends \Miaoxing\Plugin\BaseController
 {
     public function workAction($req)
     {
