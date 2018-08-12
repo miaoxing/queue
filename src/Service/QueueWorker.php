@@ -4,8 +4,6 @@ namespace Miaoxing\Queue\Service;
 
 use Exception;
 use Miaoxing\Plugin\BaseService;
-use Miaoxing\Queue\Service\BaseQueue;
-use Miaoxing\Queue\Service\BaseJob;
 
 /**
  * @property \Wei\Logger $logger
@@ -39,7 +37,7 @@ class QueueWorker extends BaseService
      *
      * @var int
      */
-    protected $tries = 1;
+    protected $tries = 0;
 
     /**
      * Amount of time to delay failed jobs
@@ -131,7 +129,6 @@ class QueueWorker extends BaseService
      * @param  int $delay
      * @param  int $sleep
      * @param  int $maxTries
-     * @return void
      */
     protected function runNextJobForDaemon($queueName, $delay, $sleep, $maxTries)
     {
@@ -238,7 +235,6 @@ class QueueWorker extends BaseService
      * Raise the after queue job event.
      *
      * @param  BaseJob $job
-     * @return void
      */
     protected function raiseAfterJobEvent(BaseJob $job)
     {
@@ -274,7 +270,6 @@ class QueueWorker extends BaseService
      * Raise the failed queue job event.
      *
      * @param  BaseJob $job
-     * @return void
      */
     protected function raiseFailedJobEvent(BaseJob $job)
     {
@@ -340,8 +335,6 @@ class QueueWorker extends BaseService
 
     /**
      * Stop listening and bail out of the script.
-     *
-     * @return void
      */
     public function stop()
     {
@@ -353,7 +346,6 @@ class QueueWorker extends BaseService
      * Sleep the script for a given number of seconds.
      *
      * @param  int $seconds
-     * @return void
      */
     public function sleep($seconds)
     {
