@@ -37,7 +37,7 @@ class QueueWorker extends BaseService
      *
      * @var int
      */
-    protected $tries = 0;
+    protected $tries = 1;
 
     /**
      * Amount of time to delay failed jobs
