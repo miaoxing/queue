@@ -2,7 +2,7 @@
 
 namespace Miaoxing\Queue\Migration;
 
-use Miaoxing\Plugin\BaseMigration;
+use Miaoxing\Services\Migration\BaseMigration;
 
 class V20170210112526CreateQueueFailedJobsTable extends BaseMigration
 {

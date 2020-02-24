@@ -2,7 +2,7 @@
 
 namespace Miaoxing\Queue\Migration;
 
-use Miaoxing\Plugin\BaseMigration;
+use Miaoxing\Services\Migration\BaseMigration;
 
 class V20170206104939CreateQueueJobsTable extends BaseMigration
 {
