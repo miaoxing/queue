@@ -2,6 +2,8 @@
 
 namespace Miaoxing\Queue\Migration;
 
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Miaoxing\Services\Migration\BaseMigration;
 
 class V20170210112526CreateQueueFailedJobsTable extends BaseMigration
@@ -11,12 +13,14 @@ class V20170210112526CreateQueueFailedJobsTable extends BaseMigration
      */
     public function up()
     {
-        $this->schema->table('queue_failed_jobs')
-            ->id()
-            ->string('queue', 32)
-            ->longText('payload')
-            ->timestamp('created_at')
-            ->exec();
+        Schema::create('queue_failed_jobs', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->text('connection');
+            $table->text('queue');
+            $table->longText('payload');
+            $table->longText('exception');
+            $table->timestamp('failed_at')->useCurrent();
+        });
     }
 
     /**
@@ -24,6 +28,6 @@ class V20170210112526CreateQueueFailedJobsTable extends BaseMigration
      */
     public function down()
     {
-        $this->schema->dropIfExists('queue_failed_jobs');
+        Schema::dropIfExists('queue_failed_jobs');
     }
 }
