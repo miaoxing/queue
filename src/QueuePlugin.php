@@ -2,7 +2,7 @@
 
 namespace Miaoxing\Queue;
 
-class Plugin extends \Miaoxing\Plugin\BasePlugin
+class QueuePlugin extends \Miaoxing\Plugin\BasePlugin
 {
     protected $name = '队列';
 
