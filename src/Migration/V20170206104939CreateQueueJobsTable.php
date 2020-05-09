@@ -5,9 +5,18 @@ namespace Miaoxing\Queue\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Miaoxing\Services\Migration\BaseMigration;
+use Miaoxing\Services\Service\Laravel;
 
 class V20170206104939CreateQueueJobsTable extends BaseMigration
 {
+    public function __construct($options)
+    {
+        parent::__construct($options);
+
+        // 在网页中运行要主动启动 Laravel
+        Laravel::bootstrap();
+    }
+
     /**
      * {@inheritdoc}
      */
