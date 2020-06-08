@@ -4,7 +4,7 @@ namespace Miaoxing\Queue\Migration;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Miaoxing\Services\Migration\BaseMigration;
+use Wei\Migration\BaseMigration;
 use Miaoxing\Services\Service\Laravel;
 
 class V20170206104939CreateQueueJobsTable extends BaseMigration
