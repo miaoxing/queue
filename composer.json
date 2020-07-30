@@ -2,7 +2,8 @@
   "name": "miaoxing/queue",
   "description": "Miaoxing Queue Plugin",
   "keywords": [
-    "miaoxing", "queue"
+    "miaoxing",
+    "queue"
   ],
   "license": "MIT",
   "require": {
