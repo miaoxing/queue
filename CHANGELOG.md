@@ -1,3 +1,13 @@
+## [0.1.6](https://github.com/miaoxing/queue/compare/v0.1.5...v0.1.6) (2020-08-14)
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from 0.1.5 to 0.1.6
+
 ## [0.1.5](https://github.com/miaoxing/queue/compare/v0.1.4...v0.1.5) (2020-08-14)
 
 
