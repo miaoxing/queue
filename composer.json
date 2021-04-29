@@ -20,5 +20,13 @@
     }
   },
   "minimum-stability": "dev",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "require-dev": {
+    "miaoxing/dev": "^6.4.0"
+  },
+  "extra": {
+    "require-ci": {
+      "miaoxing/dev": "miaoxing/dev as 6.x-dev"
+    }
+  }
 }
