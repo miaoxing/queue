@@ -4,8 +4,8 @@ namespace Miaoxing\Queue\Migration;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Wei\Migration\BaseMigration;
 use Miaoxing\Services\Service\Laravel;
+use Wei\Migration\BaseMigration;
 
 class V20170206104939CreateQueueJobsTable extends BaseMigration
 {
@@ -22,7 +22,7 @@ class V20170206104939CreateQueueJobsTable extends BaseMigration
      */
     public function up()
     {
-        Schema::create('queue_jobs', function (Blueprint $table) {
+        Schema::create('queue_jobs', static function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('queue')->index();
             $table->longText('payload');

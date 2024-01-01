@@ -13,7 +13,7 @@ class V20170210112526CreateQueueFailedJobsTable extends BaseMigration
      */
     public function up()
     {
-        Schema::create('queue_failed_jobs', function (Blueprint $table) {
+        Schema::create('queue_failed_jobs', static function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('connection');
             $table->text('queue');

@@ -3,7 +3,6 @@
 namespace MiaoxingTest\Queue\Service;
 
 use Miaoxing\Queue\Service\BaseJob;
-use RuntimeException;
 
 /**
  * @link https://github.com/laravel/framework/blob/5.1/tests/Queue/QueueWorkerTest.php
@@ -130,7 +129,7 @@ class QueueWorkerTest extends \Miaoxing\Plugin\Test\BaseTestCase
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException \RuntimeException
      */
     public function testJobIsReleasedWhenExceptionIsThrown()
     {
@@ -138,8 +137,8 @@ class QueueWorkerTest extends \Miaoxing\Plugin\Test\BaseTestCase
 
         $job->expects($this->once())
             ->method('fire')
-            ->willReturnCallback(function () {
-                throw new RuntimeException();
+            ->willReturnCallback(static function () {
+                throw new \RuntimeException();
             });
 
         $job->expects($this->once())
@@ -154,7 +153,7 @@ class QueueWorkerTest extends \Miaoxing\Plugin\Test\BaseTestCase
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException \RuntimeException
      */
     public function testJobIsNotReleasedWhenExceptionIsThrownButJobIsDeleted()
     {
@@ -162,8 +161,8 @@ class QueueWorkerTest extends \Miaoxing\Plugin\Test\BaseTestCase
 
         $job->expects($this->once())
             ->method('fire')
-            ->willReturnCallback(function () {
-                throw new RuntimeException();
+            ->willReturnCallback(static function () {
+                throw new \RuntimeException();
             });
 
         $job->expects($this->once())
