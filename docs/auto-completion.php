@@ -1,24 +1,17 @@
 <?php
 
 /**
- * @property    Miaoxing\Queue\Service\Queue $queue
+
  */
-class QueueMixin {
+ #[\AllowDynamicProperties]
+class AutoCompletion
+{
 }
 
 /**
- * @mixin QueueMixin
- */
-class AutoCompletion {
-}
-
-/**
- * @return AutoCompletion
+ * @return AutoCompletion|Wei\Wei
  */
 function wei()
 {
-    return new AutoCompletion;
+    return new AutoCompletion(func_get_args());
 }
-
-/** @var Miaoxing\Queue\Service\Queue $queue */
-$queue = wei()->queue;
