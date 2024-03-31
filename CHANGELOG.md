@@ -1,3 +1,24 @@
+# [0.2.0](https://github.com/miaoxing/queue/compare/v0.1.57...v0.2.0) (2024-03-31)
+
+
+### Code Refactoring
+
+* **queue:** 移除 `Queue` 服务相关内容，改为使用 `plugin` 插件中的 `Queue` 服务 ([8f8750c](https://github.com/miaoxing/queue/commit/8f8750c2fea97c3ec8bd1393d3eb5c9e57c06a73))
+
+
+### BREAKING CHANGES
+
+* **queue:** 移除 `Queue` 服务相关内容，改为使用 `plugin` 插件中的 `Queue` 服务
+
+
+
+
+
+### Dependencies
+
+* **@miaoxing/app:** upgrade from `0.8.2` to `0.8.3`
+* **@miaoxing/dev:** upgrade from `9.1.0` to `9.1.1`
+
 ## [0.1.57](https://github.com/miaoxing/queue/compare/v0.1.56...v0.1.57) (2024-02-29)
 
 
